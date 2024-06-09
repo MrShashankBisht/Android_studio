@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android_palette</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="submit">Submit</string>
+</resources>
