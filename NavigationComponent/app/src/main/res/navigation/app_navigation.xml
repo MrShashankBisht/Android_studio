@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/fragment_profile">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.mrshashankbisht.navigationcomponent.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/fragment_Home"
+        android:name="com.mrshashankbisht.navigationcomponent.Fragment_Home"
+        android:label="fragment__home"
+        tools:layout="@layout/fragment__home" >
+        <action
+            android:id="@+id/action_fragment_Home_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_Search"
+        android:name="com.mrshashankbisht.navigationcomponent.Fragment_Search"
+        android:label="fragment__search"
+        tools:layout="@layout/fragment__search" >
+        <action
+            android:id="@+id/action_fragment_Search_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_Reels"
+        android:name="com.mrshashankbisht.navigationcomponent.Fragment_Reels"
+        android:label="fragment__reels"
+        tools:layout="@layout/fragment__reels" >
+        <action
+            android:id="@+id/action_fragment_Reels_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_create"
+        android:name="com.mrshashankbisht.navigationcomponent.Fragment_create"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_fragment_create_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.mrshashankbisht.navigationcomponent.Fragment_profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragment_profile_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+</navigation>
