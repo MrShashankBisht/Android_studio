@@ -2,11 +2,13 @@ package com.mrshashankbisht.recyclerview;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.mrshashankbisht.recyclerview.data.PostData;
 
 import java.lang.reflect.Array;
@@ -35,6 +37,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         PostData postData = arrayListPostData.get(position);
         TextView tv = holder.itemView.findViewById(R.id.item_post_profile_name);
         tv.setText(postData.name);
+
+        ImageView profile = holder.itemView.findViewById(R.id.item_post_profile);
+
+        Glide.with(holder.itemView.getContext())
+                .load("https://images.unsplash.com/photo-1604004215656-5ea118076982?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+                .circleCrop()
+                .into(profile);
     }
 
     @Override
