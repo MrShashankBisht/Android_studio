@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView profile = holder.itemView.findViewById(R.id.item_post_profile);
 
         Glide.with(holder.itemView.getContext())
-                .load("https://images.unsplash.com/photo-1604004215656-5ea118076982?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+                .load(postData.profile_image)
                 .circleCrop()
                 .into(profile);
     }
