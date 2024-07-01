@@ -2,11 +2,15 @@ package com.mrshashankbisht.navigationcomponent;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,13 @@ public class Fragment_Home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private int counter = 0;
+    private Bundle savedInstanceState;
+
+    // widget
+    private TextView tvCounter;
+    private Button btnCounter;
 
     public Fragment_Home() {
         // Required empty public constructor
@@ -58,7 +69,50 @@ public class Fragment_Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(savedInstanceState == null) {
+            savedInstanceState = new Bundle();
+        }
+        this.savedInstanceState = savedInstanceState;
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment__home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnCounter = view.findViewById(R.id.increment_button);
+        tvCounter = view.findViewById(R.id.simple_text);
+
+        btnCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ++counter;
+                tvCounter.setText(""+counter);
+            }
+        });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        if(outState == null) {
+            outState = new Bundle();
+        }
+        outState.putInt("counter", counter);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (this.savedInstanceState != null) {
+            counter = this.savedInstanceState.getInt("counter");
+            tvCounter.setText(""+counter);
+        }
     }
 }
