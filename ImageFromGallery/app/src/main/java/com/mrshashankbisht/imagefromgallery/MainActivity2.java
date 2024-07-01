@@ -1,5 +1,8 @@
 package com.mrshashankbisht.imagefromgallery;
 
+import static com.mrshashankbisht.imagefromgallery.MainActivity.STRING_URI;
+
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,13 +20,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    ImageView imageView_2;
     Button btn_2;
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
+                    if (uri != null) {
+                        Intent i = getIntent();
+                        i.putExtra(STRING_URI, uri.toString());
+                        setResult(RESULT_OK, i);
+                        finish();
+                    }
                 }
             });
 

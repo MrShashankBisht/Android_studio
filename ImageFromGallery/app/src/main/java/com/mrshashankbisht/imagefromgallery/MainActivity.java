@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -18,14 +19,32 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
+    ImageView iv;
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(,
+    public static String STRING_URI = "String_uri";
+
+/*    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
 
                 }
-            });
+            });*/
+
+    ActivityResultLauncher mGetContent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK) {
+                Intent data = result.getData();
+                if(data != null){
+                    String uri = data.getStringExtra(STRING_URI);
+                    if(uri != null) {
+                        iv.setImageURI(Uri.parse(uri));
+                    }
+                }
+            }
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +57,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         btn = findViewById(R.id.btn);
+        iv = findViewById(R.id.image_view);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, MainActivity2.class);
-                mGetContent
+                mGetContent.launch(i);
             }
         });
     }
